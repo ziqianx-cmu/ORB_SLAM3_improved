@@ -398,29 +398,29 @@ void MapPoint::ComputeDistinctiveDescriptors()
 
     // Use max distance to the closest neighbor as threshold
     // compute max distance
-    std::vector<int> avgDistances(vDescriptors.size(), 0);
+    // std::vector<int> avgDistances(vDescriptors.size(), 0);
 
-    for(size_t i=0;i<vDescriptors.size();i++)
-    {
-        for(size_t j=0;j<vDescriptors.size();j++)
-        {
-            if(i != j){
-                int distij = ORBmatcher::DescriptorDistance(vDescriptors[i],vDescriptors[j]);
-                avgDistances[i] += distij;
-            }
-        }
-        avgDistances[i] /= (vDescriptors.size() - 1);
-    }
+    // for(size_t i=0;i<vDescriptors.size();i++)
+    // {
+    //     for(size_t j=0;j<vDescriptors.size();j++)
+    //     {
+    //         if(i != j){
+    //             int distij = ORBmatcher::DescriptorDistance(vDescriptors[i],vDescriptors[j]);
+    //             avgDistances[i] += distij;
+    //         }
+    //     }
+    //     avgDistances[i] /= (vDescriptors.size() - 1);
+    // }
 
-    // Compare and choose the max distance
-    int BestIdx = 0;
-    int MaxDistance = 0;
-    for (size_t i = 0; i < avgDistances.size(); i++){
-        if(avgDistances[i] > MaxDistance){
-            MaxDistance = avgDistances[i];
-            BestIdx = i;
-        }
-    }
+    // // Compare and choose the max distance
+    // int BestIdx = 0;
+    // int MaxDistance = 0;
+    // for (size_t i = 0; i < avgDistances.size(); i++){
+    //     if(avgDistances[i] > MaxDistance){
+    //         MaxDistance = avgDistances[i];
+    //         BestIdx = i;
+    //     }
+    // }
 
     {
         unique_lock<mutex> lock(mMutexFeatures);
